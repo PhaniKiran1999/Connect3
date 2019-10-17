@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int[] gameState = {2,2,2,2,2,2,2,2,2};
+    int[] currentState = {2,2,2,2,2,2,2,2,2};
     int[][] winningStates = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
     static int currentPlayer = 0;
     static String player = "Yellow";
@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
 
-        if (gameState[tappedCounter] == 2) {
+        if (currentState[tappedCounter] == 2) {
 
-            gameState[tappedCounter] = currentPlayer;
+            currentState[tappedCounter] = currentPlayer;
 
             counter.setTranslationY(-1000f);
 
@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
         for(int[] winningState:winningStates){
-            if (gameState[winningState[0]]==gameState[winningState[1]]&&
-                gameState[winningState[1]]==gameState[winningState[2]]&&
-                gameState[winningState[0]]!=2){
+            if (currentState[winningState[0]]==currentState[winningState[1]]&&
+                currentState[winningState[1]]==currentState[winningState[2]]&&
+                currentState[winningState[0]]!=2){
                 Toast.makeText(getApplicationContext(),player+" is the Winner",Toast.LENGTH_SHORT).show();
             }
         }
