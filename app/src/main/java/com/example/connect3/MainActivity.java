@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     int[][] winningStates = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
     static int currentPlayer = 0;
     static String player = "Yellow";
+    boolean gameOver = false;
     public void dropIn(View view){
         ImageView counter = (ImageView) view;
         if (currentPlayer == 0)
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
 
-        if (gameState[tappedCounter] == 2) {
+        if (gameState[tappedCounter] == 2 && gameOver == false) {
 
             gameState[tappedCounter] = currentPlayer;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 gameState[winningState[1]]==gameState[winningState[2]]&&
                 gameState[winningState[0]]!=2){
                 Toast.makeText(getApplicationContext(),player+" is the Winner",Toast.LENGTH_SHORT).show();
+                gameOver = true;
             }
         }
     }
